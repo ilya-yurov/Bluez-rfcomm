@@ -17,7 +17,7 @@ int main(int argc, char **argv)
     // привязываем сокет к порту 1 первого доступного локального адаптера bluetooth
     loc_addr.rc_family = AF_BLUETOOTH; //семейство адресов сокета и всегда будет AF_BLUETOOTH
     loc_addr.rc_bdaddr = *BDADDR_ANY; //любой локальный адаптер Bluetooth является приемлемым
-    loc_addr.rc_channel = (uint8_t) 0; //указывается номер порта для прослушивания
+    loc_addr.rc_channel = (uint8_t) 1; //указывается номер порта для прослушивания
     bind(s, (struct sockaddr *)&loc_addr, sizeof(loc_addr));
 
     // переводим сокет в режим прослушивания
