@@ -10,26 +10,26 @@ int main(int argc, char **argv)
     int s, status;
     char dest[18] = "00:19:86:00:31:22";
 
-    // allocate a socket
+    // выделяем сокет
     s = socket(AF_BLUETOOTH, SOCK_STREAM, BTPROTO_RFCOMM);
     if (s < 0)
 	printf("Can't open socket");
 
-    // set the connection parameters (who to connect to)
-    addr.rc_family = AF_BLUETOOTH;
-    addr.rc_channel = (uint8_t) 1;
-    str2ba( dest, &addr.rc_bdaddr );
+    // устанавливаем параметры подключения (к кому подключаться)
+    addr.rc_family = AF_BLUETOOTH; //семейство адресов сокета. всегда будет AF_BLUETOOTH
+    addr.rc_channel = (uint8_t) 0; //любой локальный адаптер Bluetooth является приемлемым
+    str2ba( dest, &addr.rc_bdaddr ); //указывается номер порта для прослушивания
 
-    // connect to server
+    // подключаемся к серверу
     status = connect(s, (struct sockaddr *)&addr, sizeof(addr));
 
-    // send a message
+    // отправляем сообщение 
     if( status == 0 ) {
         status = write(s, "hello!", 6);
     }
 
     if( status < 0 ) perror("uh oh");
-
+    //закрываем сокет	
     close(s);
     return 0;
 }
