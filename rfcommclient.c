@@ -28,7 +28,7 @@ int main(int argc, char **argv)
         status = write(s, "hello!", 6); //пишем при помощи write() (write(s, buf, sizeof(buf))) сообщение в сокет
     }
 
-    if( status < 0 ) perror("uh oh");
+    if( status < 0 ) perror("Can't write the message!\n");
     //закрываем сокет	
     close(s);
     return 0;
