@@ -17,7 +17,7 @@ int main(int argc, char **argv)
 
     // устанавливаем параметры подключения (к кому подключаться)
     addr.rc_family = AF_BLUETOOTH; //семейство адресов сокета. всегда будет AF_BLUETOOTH
-    addr.rc_channel = (uint8_t) 0; //любой локальный адаптер Bluetooth является приемлемым
+    addr.rc_channel = (uint8_t) 1; //любой локальный адаптер Bluetooth является приемлемым
     str2ba( dest, &addr.rc_bdaddr ); //указывается номер порта для прослушивания
 
     // подключаемся к серверу
